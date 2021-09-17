@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 public class AccountController {
 
-
+//Get
     @GetMapping("/user")
     public List <AccountUser> allUsers(){
         return List.of(new AccountUser(1, "PelleGurkan","Pelle", "Hejsvejs123!"));
