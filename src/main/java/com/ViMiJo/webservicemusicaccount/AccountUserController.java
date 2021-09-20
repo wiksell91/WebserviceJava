@@ -3,17 +3,14 @@ package com.ViMiJo.webservicemusicaccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 
 @RestController
+@RequestMapping("group2/musicaccount/user")
 public class AccountUserController {
 
     private AccountUserService accountUserService = new AccountUserService();
-
-
-
 
     @Autowired
     public AccountUserController(AccountUserService accountUserService) {
@@ -21,30 +18,28 @@ public class AccountUserController {
     }
 
     //Get
-    @GetMapping("/user")
+    @GetMapping()
     public List<AccountUser> allUsers() {
         return accountUserService.allUsers();
     }
 
     //Post
-    @PostMapping("/user")
-    public String createUser(@RequestParam(required = true) int id, String userName, String name, String passWord) {
-
-        return accountUserService.createUser(id,userName, name, passWord);
+    @PostMapping()
+    public String createUser(@RequestParam(required = true) String userName, String name, String passWord) {
+        return accountUserService.createUser(userName, name, passWord);
     }
 
     //Put
-    @PutMapping("/user")
+    @PutMapping()
     public AccountUser updateUser(@RequestParam(required = true)String name) {
         return accountUserService.updateUser(name);
     }
 
-    @DeleteMapping("/user/{id}")
-    public String deleteUser(@PathVariable(value = "id") int id) {
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable(value = "id")int id) {
         return "account deleted + " + accountUserService.deleteUser(id);
     }
 }
-
 //    @PutMapping("/user/{id}")
 //    public ResponseEntity<AccountUser> updateEmployee(@PathVariable(value = "id") int AccountUserId,
 //                                                   /*@Valid*/ @RequestBody AccountUser accountUserDetails) /*throws ResourceNotFoundException*/ {
