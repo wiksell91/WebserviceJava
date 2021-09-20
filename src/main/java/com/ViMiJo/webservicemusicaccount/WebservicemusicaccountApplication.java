@@ -9,5 +9,4 @@ public class WebservicemusicaccountApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WebservicemusicaccountApplication.class, args);
 	}
-
 }
