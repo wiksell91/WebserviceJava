@@ -8,7 +8,10 @@ import lombok.ToString;
 @Setter
 @Getter
 public class AccountUser {
-                //TODO: Autogenerera Id eller felhantgering vid id  -- skriva en autogeneringsmetod?
+
+    private static int idCounter = 1;
+
+    //TODO: Autogenerera Id eller felhantgering vid id  -- skriva en autogeneringsmetod?
     private int id;
     private String userName;
     private String name;
@@ -18,5 +21,7 @@ public class AccountUser {
         this.userName = userName;
         this.name = name;
         this.passWord = passWord;
+        setId(idCounter);
+        idCounter++;
     }
 }

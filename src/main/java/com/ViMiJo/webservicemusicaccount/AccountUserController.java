@@ -32,6 +32,11 @@ public class AccountUserController {
     public AccountUser updateUser(@RequestParam(required = true)String name) {
         return accountUserService.updateUser(name);
     }
+
+    @DeleteMapping("/user/{id}")
+    public String deleteUser(@PathVariable(value = "id") int id) {
+        return "account deleted + " + accountUserService.deleteUser(id);
+    }
 }
 
 //    @PutMapping("/user/{id}")

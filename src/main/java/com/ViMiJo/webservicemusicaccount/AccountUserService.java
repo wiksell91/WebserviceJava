@@ -20,4 +20,9 @@ public class AccountUserService {
         accountUser.setName(name);
         return accountUser;
     }
+
+    public AccountUser deleteUser(int id) {
+        AccountUser accountUser = new AccountUser("joppe", "jonas", "hejsan123");
+        return accountUser;
+    }
 }
