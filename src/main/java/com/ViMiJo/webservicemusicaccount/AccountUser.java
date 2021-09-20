@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @Getter
 public class AccountUser {
-                //TODO: Autogenerera Id eller felhantgering vid id  -- skriva en autogeneringsmetod?
+    //TODO: Autogenerera Id eller felhantgering vid id  -- skriva en autogeneringsmetod?
     private int id;
     private String userName;
     private String name;
