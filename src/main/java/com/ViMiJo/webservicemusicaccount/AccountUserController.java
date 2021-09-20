@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class AccountUserController {
+public class  AccountUserController {
 
     private AccountUserService accountUserService = new AccountUserService();
 
@@ -16,7 +16,7 @@ public class AccountUserController {
     }
 
     //Get
-    @GetMapping("/user")
+    @GetMapping()
     public List<AccountUser> allUsers() {
         return accountUserService.allUsers();
     }
