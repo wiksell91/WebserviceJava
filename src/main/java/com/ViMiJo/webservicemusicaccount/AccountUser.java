@@ -17,7 +17,8 @@ public class AccountUser {
     private String name;
     private String passWord;
 
-    public AccountUser(String userName, String name, String passWord) {  //tar bort id från konstruktorn för tänker att en "user" inte behöver skriva sitt egna id?
+    public AccountUser(int id,String userName, String name, String passWord) {  //tar bort id från konstruktorn för tänker att en "user" inte behöver skriva sitt egna id?
+        this.id = id;
         this.userName = userName;
         this.name = name;
         this.passWord = passWord;

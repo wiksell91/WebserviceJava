@@ -3,12 +3,17 @@ package com.ViMiJo.webservicemusicaccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
+
 
 @RestController
 public class AccountUserController {
 
     private AccountUserService accountUserService = new AccountUserService();
+
+
+
 
     @Autowired
     public AccountUserController(AccountUserService accountUserService) {
@@ -23,8 +28,9 @@ public class AccountUserController {
 
     //Post
     @PostMapping("/user")
-    public AccountUser createUser(@RequestParam(required = true) String userName, String name, String password) {
-        return accountUserService.createUser(userName, name, password);
+    public String createUser(@RequestParam(required = true) int id, String userName, String name, String passWord) {
+
+        return accountUserService.createUser(id,userName, name, passWord);
     }
 
     //Put
