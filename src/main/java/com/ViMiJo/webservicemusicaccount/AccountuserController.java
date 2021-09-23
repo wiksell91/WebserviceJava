@@ -4,35 +4,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
 @RequestMapping(path = "/user")
 public class AccountuserController {
 
-    private final AccountuserService accountUserService;
+    private final AccountuserService accountuserService;
 
     @Autowired
     public AccountuserController(AccountuserService accountUserService) {
-        this.accountUserService = accountUserService;
+        this.accountuserService = accountUserService;
     }
 
     //Get
     @GetMapping
     public List<Accountuser> getaccountusers(){
-        return accountUserService.getAccountusers();
+        return accountuserService.getAccountusers();
+    }
+
+    //GET en användare
+    @GetMapping("{accountuserId}")
+    public Optional<Accountuser> oneUser(@PathVariable("accountuserId") Long accountuserId) {
+        return accountuserService.oneUser(accountuserId);
     }
 
     //Post
     @PostMapping
     public void newAccountuser(@RequestBody Accountuser accountuser){
-        accountUserService.addNewAccountuser(accountuser);
+        accountuserService.addNewAccountuser(accountuser);
     }
+
 
     //Delete
     @DeleteMapping(path = "{accountuserId}")
     public void deleteAccountuser(@PathVariable("accountuserId")Long accountuserId){
-        accountUserService.deleteaccountuser(accountuserId);
+        accountuserService.deleteaccountuser(accountuserId);
     }
 
     //Put
@@ -42,7 +50,7 @@ public class AccountuserController {
             @RequestParam(required = false)String userName,
             @RequestParam(required = false)String name,
             @RequestParam(required = false)String passWord){
-            accountUserService.updateAccountuser(accountUserId,userName, name, passWord);
+            accountuserService.updateAccountuser(accountUserId,userName, name, passWord);
     }
 }
 

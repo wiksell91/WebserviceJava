@@ -25,6 +25,10 @@ public class AccountuserService {
         return accountuserRepository.findAll();
     }
 
+    public Optional<Accountuser> oneUser(Long accountuserId) {
+        return accountuserRepository.findById(accountuserId);
+    }
+
     public void addNewAccountuser(Accountuser accountuser){
         Optional<Accountuser> accountUserOptional =
                 accountuserRepository.findAccountuserByUserName(accountuser.getUserName());
@@ -70,9 +74,6 @@ public class AccountuserService {
 
 
     }
-
-
-
 
 
 

@@ -1,6 +1,6 @@
 
 package com.ViMiJo.webservicemusicaccount;
-/*
+
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -39,4 +39,3 @@ public class AccountuserAuto {
     }
 
 }
-*/
