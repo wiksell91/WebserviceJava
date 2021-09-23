@@ -10,7 +10,6 @@ import java.util.List;
 @Service
 public class AccountUserService {
 
-
     public ArrayList<AccountUser> aul = new ArrayList<AccountUser>();
     public List<AccountUser> allUsers() {
         if(aul.size()==0) {
