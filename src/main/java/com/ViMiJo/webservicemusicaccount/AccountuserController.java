@@ -14,8 +14,8 @@ public class AccountuserController {
     private final AccountuserService accountuserService;
 
     @Autowired
-    public AccountuserController(AccountuserService accountUserService) {
-        this.accountuserService = accountUserService;
+    public AccountuserController(AccountuserService accountuserService) {
+        this.accountuserService = accountuserService;
     }
 
     //Get
@@ -26,7 +26,7 @@ public class AccountuserController {
 
     //GET en användare
     @GetMapping("{accountuserId}")
-    public Optional<Accountuser> oneUser(@PathVariable("accountuserId") Long accountuserId) {
+    public Optional<Accountuser> oneUser(@PathVariable("accountuserId" ) Long accountuserId) {
         return accountuserService.oneUser(accountuserId);
     }
 
