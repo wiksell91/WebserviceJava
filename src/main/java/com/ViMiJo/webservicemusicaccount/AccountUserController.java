@@ -4,47 +4,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-public class  AccountUserController {
+@RequestMapping(path = "/user")
+public class AccountuserController {
 
-    private AccountUserService accountUserService = new AccountUserService();
+    private final AccountuserService accountuserService;
 
     @Autowired
-    public AccountUserController(AccountUserService accountUserService) {
-        this.accountUserService = accountUserService;
+    public AccountuserController(AccountuserService accountuserService) {
+        this.accountuserService = accountuserService;
     }
 
     //Get
-    @GetMapping()
-    public List<AccountUser> allUsers() {
-        return accountUserService.allUsers();
+    @GetMapping
+    public List<Accountuser> getaccountusers(){
+        return accountuserService.getAccountusers();
+    }
+
+    //GET en användare
+    @GetMapping("{accountuserId}")
+    public Optional<Accountuser> oneUser(@PathVariable("accountuserId" ) Long accountuserId) {
+        return accountuserService.oneUser(accountuserId);
     }
 
     //Post
-    @PostMapping("/user")
-    public AccountUser createUser(@RequestParam(required = true) String userName, String name, String password) {
-        return accountUserService.createUser(userName, name, password);
+    @PostMapping
+    public void newAccountuser(@RequestBody Accountuser accountuser){
+        accountuserService.addNewAccountuser(accountuser);
+    }
+
+
+    //Delete
+    @DeleteMapping(path = "{accountuserId}")
+    public void deleteAccountuser(@PathVariable("accountuserId")Long accountuserId){
+        accountuserService.deleteaccountuser(accountuserId);
     }
 
     //Put
-    @PutMapping("/user")
-    public AccountUser updateUser(@RequestParam(required = true)String name) {
-        return accountUserService.updateUser(name);
+    @PutMapping("{accountUserId}")
+    public void updateAccountUser(
+            @PathVariable("accountUserId") Long accountUserId,
+            @RequestParam(required = false)String userName,
+            @RequestParam(required = false)String name,
+            @RequestParam(required = false)String passWord){
+            accountuserService.updateAccountuser(accountUserId,userName, name, passWord);
     }
 }
 
-//    @PutMapping("/user/{id}")
-//    public ResponseEntity<AccountUser> updateEmployee(@PathVariable(value = "id") int AccountUserId,
-//                                                   /*@Valid*/ @RequestBody AccountUser accountUserDetails) /*throws ResourceNotFoundException*/ {
-//        Employee employee = employeeRepository.findById(employeeId);
-////                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
-//
-//        employee.setEmailId(employeeDetails.getEmailId());
-//        employee.setLastName(employeeDetails.getLastName());
-//        employee.setFirstName(employeeDetails.getFirstName());
-//        final Employee updatedEmployee = employeeRepository.save(employee);
-//        return ResponseEntity.ok(updatedEmployee);
-//    }
 
 
