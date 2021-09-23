@@ -5,28 +5,22 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Service
 public class AccountUserService {
+    TestUserHandler testUserHandler = new TestUserHandler();
+    ArrayList<AccountUser> accountUsersList = testUserHandler.getAccountUsersList();
 
-    public ArrayList<AccountUser> aul = new ArrayList<AccountUser>();
-
-    public List<AccountUser> allUsers() {
-        if(aul.size()==0) {
-            AccountUser user1 = new AccountUser( "JolleH", "Joel Holewa", "12345");
-            AccountUser user2 = new AccountUser( "MirreF", "Miranda Frisö", "12345");
-            AccountUser user3 = new AccountUser( "VirreW", "Victor Wiksell", "12345");
-            aul.add(user1);
-            aul.add(user2);
-            aul.add(user3);
+    public List<AccountUser> getUsers() {
+        if (accountUsersList.size() == 0) {
+            testUserHandler.createTestUsers();
         }
-            return aul;
+        return testUserHandler.getAccountUsersList();
     }
 
     public String createUser(String userName, String name, String passWord) {
-        AccountUser userNew = new AccountUser( userName, name, passWord);
-        aul.add(userNew);
-        return "Ny kontoanvändare har lagts till" + aul;
+        AccountUser userNew = new AccountUser(userName, name, passWord);
+        accountUsersList.add(userNew);
+        return "Ny kontoanvändare har lagts till" + accountUsersList;
     }
 
     public AccountUser updateUser(String name) {
@@ -36,7 +30,11 @@ public class AccountUserService {
     }
 
     public String deleteUser(int id) {
-        aul.remove(id - 1);
-        return "" + aul;
+        accountUsersList.remove(id - 1);
+        return "" + accountUsersList;
+    }
+
+    public AccountUser getOneUser(int id) {
+        return accountUsersList.get(id - 1);
     }
 }

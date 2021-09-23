@@ -7,7 +7,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("group2/musicaccount/user")
+@RequestMapping("group2/musicaccount")
 public class AccountUserController {
 
     private AccountUserService accountUserService = new AccountUserService();
@@ -18,9 +18,14 @@ public class AccountUserController {
     }
 
     //Get
-    @GetMapping()
+    @GetMapping("/allusers")
     public List<AccountUser> allUsers() {
-        return accountUserService.allUsers();
+        return accountUserService.getUsers();
+    }
+
+    @GetMapping("/oneuser/{id}")
+    public AccountUser oneUser(@PathVariable(value ="id")int id) {
+        return  accountUserService.getOneUser(id);
     }
 
     //Post
@@ -35,7 +40,7 @@ public class AccountUserController {
         return accountUserService.updateUser(name);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public String deleteUser(@PathVariable(value = "id")int id) {
         return "account deleted + " + accountUserService.deleteUser(id);
     }
