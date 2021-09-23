@@ -67,8 +67,5 @@ public class AccountuserService {
         {
             accountuser.setPassWord(passWord);
         }
-
-
     }
-
 }
