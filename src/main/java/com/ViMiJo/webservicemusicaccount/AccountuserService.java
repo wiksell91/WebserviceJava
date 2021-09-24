@@ -22,6 +22,10 @@ public class AccountuserService {
         return accountuserRepository.findAll();
     }
 
+    public Optional<AccountUser> getOneUser(long id) {
+        return accountuserRepository.findById(id);
+    }
+
     public void addNewAccountuser(AccountUser accountuser) {
         Optional<AccountUser> accountUserOptional =
                 accountuserRepository.findAccountuserByUserName(accountuser.getUserName());
@@ -31,14 +35,16 @@ public class AccountuserService {
         accountuserRepository.save(accountuser);
     }
 
-    public void deleteaccountuser(Long accoutuserId) {
+    public String deleteaccountuser(Long accoutuserId) {
         boolean exist = accountuserRepository.existsById(accoutuserId);
         if (!exist) {
             throw new IllegalStateException(
                     "Användare med id " + accoutuserId + " finns inte"
             );
         }
+
         accountuserRepository.deleteById(accoutuserId);
+        return "Användaren med id  " + accoutuserId + " är raderad";
     }
 
     @Transactional

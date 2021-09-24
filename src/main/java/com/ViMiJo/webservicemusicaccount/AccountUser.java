@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.awt.*;
+
 @ToString
 @Setter
 @Getter
@@ -27,6 +29,7 @@ public class AccountUser {
     private String userName;
     private String name;
     private String password;
+//    private Image image;
 
     public AccountUser() {
     }
