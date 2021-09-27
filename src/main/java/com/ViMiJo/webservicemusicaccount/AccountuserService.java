@@ -21,13 +21,14 @@ public class AccountuserService {
         this.accountuserRepository = accountuserRepository;
     }
 
-    public List<Accountuser> getAccountusers(){
+    public List<Accountuser> getAccountUsers(){
         return accountuserRepository.findAll();
     }
 
     public Optional<Accountuser> oneUser(Long accountuserId) {
         return accountuserRepository.findById(accountuserId);
     }
+
 
     public void addNewAccountuser(Accountuser accountuser){
         Optional<Accountuser> accountUserOptional =

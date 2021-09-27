@@ -1,13 +1,14 @@
 package com.ViMiJo.webservicemusicaccount;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/vimijo.com")
 public class AccountuserController {
 
     private final AccountuserService accountuserService;
@@ -17,16 +18,18 @@ public class AccountuserController {
         this.accountuserService = accountuserService;
     }
 
-    //Get
-    @GetMapping
-    public List<Accountuser> getaccountusers(){
-        return accountuserService.getAccountusers();
-    }
+
 
     //GET en användare
     @GetMapping("{accountuserId}")
     public Optional<Accountuser> oneUser(@PathVariable("accountuserId" ) Long accountuserId) {
         return accountuserService.oneUser(accountuserId);
+    }
+
+    @GetMapping(path ="/users", produces = {MediaType.APPLICATION_XML_VALUE,
+            MediaType.APPLICATION_JSON_VALUE})
+    public List<Accountuser> getAccountUsers() {
+        return accountuserService.getAccountUsers();
     }
 
     //Post
