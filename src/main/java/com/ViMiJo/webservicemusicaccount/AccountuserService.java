@@ -26,13 +26,16 @@ public class AccountuserService {
         return accountuserRepository.findById(id);
     }
 
-    public void addNewAccountuser(AccountUser accountuser) {
+    public String addNewAccountuser(AccountUser accountuser) {
         Optional<AccountUser> accountUserOptional =
                 accountuserRepository.findAccountuserByUserName(accountuser.getUserName());
         if (accountUserOptional.isPresent()) {
             throw new IllegalStateException("Sorry, användarnamet är upptaget");
         }
         accountuserRepository.save(accountuser);
+        return "Användare  " +
+                accountuserRepository.findAccountuserByUserName(accountuser.getUserName()) +
+                        " är nu skapad!";
     }
 
     public String deleteaccountuser(Long accoutuserId) {
