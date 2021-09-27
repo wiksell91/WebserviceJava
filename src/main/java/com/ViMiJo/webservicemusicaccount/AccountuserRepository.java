@@ -7,7 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface AccountuserRepository extends JpaRepository<AccountUser, Long>{
-
     Optional<AccountUser> findAccountuserByUserName(String userName);
-
 }

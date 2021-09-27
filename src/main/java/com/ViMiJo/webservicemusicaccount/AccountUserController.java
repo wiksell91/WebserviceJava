@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,12 +31,14 @@ public class AccountUserController {
         StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
     }
 
-    @GetMapping("/getuser/{accountUserId}")
+    @GetMapping(value = "/getuser/{accountUserId}", produces = {MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE})
     public Optional<AccountUser> getOneUser(@PathVariable("accountUserId" ) Long accountUserId) {
         return accountUserService.getOneUser(accountUserId);
     }
 
-    @GetMapping("/getusers")
+    @GetMapping(value="/getusers", produces = {MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE})
     public List<AccountUser> getAccountUsers() {
         return accountUserService.getAccountusers();
     }
@@ -53,7 +54,6 @@ public class AccountUserController {
         return accountUserService.deleteaccountuser(accountuserId);
     }
 
-    //Put
     @PutMapping("/updateuser/{accountUserId}")
     public void updateAccountUser(
             @PathVariable("accountUserId") Long accountUserId,

@@ -5,15 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.awt.*;
-
 @ToString
 @Setter
 @Getter
 @Entity
 @Table
 public class AccountUser {
-                //TODO: Autogenerera Id eller felhantgering vid id  -- skriva en autogeneringsmetod?
+
     @Id
     @SequenceGenerator(
             name = "accountuser_sequence",
@@ -29,7 +27,6 @@ public class AccountUser {
     private String userName;
     private String name;
     private String password;
-//    private Image image;
 
     public AccountUser() {
     }

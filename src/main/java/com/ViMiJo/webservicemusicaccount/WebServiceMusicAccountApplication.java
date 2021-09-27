@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebservicemusicaccountApplication {
+public class WebServiceMusicAccountApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WebservicemusicaccountApplication.class, args);
+        SpringApplication.run(WebServiceMusicAccountApplication.class, args);
     }
 }
