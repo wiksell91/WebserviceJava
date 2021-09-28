@@ -9,12 +9,12 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class AccountuserService {
+public class AccountUserService {
 
-    private final AccountuserRepository accountuserRepository;
+    private final AccountUserRepository accountuserRepository;
 
     @Autowired
-    public AccountuserService(AccountuserRepository accountuserRepository) {
+    public AccountUserService(AccountUserRepository accountuserRepository) {
         this.accountuserRepository = accountuserRepository;
     }
 
@@ -35,7 +35,7 @@ public class AccountuserService {
         accountuserRepository.save(accountuser);
         return "Användare  " +
                 accountuserRepository.findAccountuserByUserName(accountuser.getUserName()) +
-                        " är nu skapad!";
+                " är nu skapad!";
     }
 
     public String deleteaccountuser(Long accoutuserId) {
