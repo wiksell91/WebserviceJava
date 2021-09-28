@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-
+//Våra hårdkodade objekt
 @Configuration
 public class AccountuserAuto {
 
