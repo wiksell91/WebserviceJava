@@ -15,14 +15,13 @@ import java.util.Optional;
 @RequestMapping(path = "/vimijo.com")
 public class AccountUserController {
 
-    private final AccountuserService accountUserService;
+    private final AccountUserService accountUserService;
 
     @Autowired
-    public AccountUserController(AccountuserService accountUserService) {
+    public AccountUserController(AccountUserService accountUserService) {
         this.accountUserService = accountUserService;
     }
 
-    //Hämta en bild. TODO: Eventuellt ändra till at produces.
     @RequestMapping(method = RequestMethod.GET,
             produces = MediaType.IMAGE_JPEG_VALUE)
     public void getImage(HttpServletResponse response) throws IOException {

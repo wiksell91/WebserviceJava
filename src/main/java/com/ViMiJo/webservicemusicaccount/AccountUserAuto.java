@@ -10,7 +10,7 @@ import java.util.List;
 public class AccountUserAuto {
 
     @Bean
-    CommandLineRunner commandLineRunner(AccountuserRepository repository){
+    CommandLineRunner commandLineRunner(AccountUserRepository repository){
         return args -> {
             AccountUser joel = new AccountUser(
                     "JolleH",
