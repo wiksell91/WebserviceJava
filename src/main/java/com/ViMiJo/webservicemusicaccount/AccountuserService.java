@@ -34,7 +34,7 @@ public class AccountuserService {
         Optional<Accountuser> accountUserOptional =
                 accountuserRepository.findAccountuserByUserName(accountuser.getUserName());
         if (accountUserOptional.isPresent()) {
-            throw new IllegalStateException("Sorry, användarnamet är upptaget");
+            throw new IllegalStateException("Sorry, användarnamnet är upptaget");
         }
         accountuserRepository.save(accountuser);
     }
