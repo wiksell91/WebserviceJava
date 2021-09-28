@@ -1,9 +1,9 @@
 package com.ViMiJo.webservicemusicaccount;
 
+import org.hibernate.engine.jdbc.StreamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,57 +13,54 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/vimijo.com")
-public class AccountuserController {
+public class AccountUserController {
 
-    private final AccountuserService accountuserService;
+    private final AccountuserService accountUserService;
 
     @Autowired
-    public AccountuserController(AccountuserService accountuserService) {
-        this.accountuserService = accountuserService;
+    public AccountUserController(AccountuserService accountUserService) {
+        this.accountUserService = accountUserService;
     }
 
-    //Hämta en bild. TODO: startsida med inloggning
-    @RequestMapping(value = "/argviking", method = RequestMethod.GET,
+    //Hämta en bild. TODO: Eventuellt ändra till at produces.
+    @RequestMapping(method = RequestMethod.GET,
             produces = MediaType.IMAGE_JPEG_VALUE)
     public void getImage(HttpServletResponse response) throws IOException {
-        var imgFile = new ClassPathResource("Image/victor.jpg");
+        var imgFile = new ClassPathResource("Image/LoginWindow.jpg");
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
     }
 
-    //Get
-    @GetMapping("/getusers")
-    public List<Accountuser> getaccountusers(){
-        return accountuserService.getAccountusers();
+    @GetMapping(value = "/getuser/{accountUserId}", produces = {MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE})
+    public Optional<AccountUser> getOneUser(@PathVariable("accountUserId" ) Long accountUserId) {
+        return accountUserService.getOneUser(accountUserId);
     }
 
-    //GET en användare med en parameter
-    @GetMapping("/getuser/{accountuserId}")
-    public Optional<Accountuser> oneUser(@PathVariable("accountuserId" ) Long accountuserId) {
-        return accountuserService.oneUser(accountuserId);
+    @GetMapping(value="/getusers", produces = {MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE})
+    public List<AccountUser> getAccountUsers() {
+        return accountUserService.getAccountusers();
     }
 
-    //Post
-    @PostMapping
-    public void newAccountuser(@RequestBody Accountuser accountuser){
-        accountuserService.addNewAccountuser(accountuser);
+    @PostMapping("/createuser")
+    public String newAccountUser(@RequestBody AccountUser accountuser) {
+        accountUserService.addNewAccountuser(accountuser);
+        return "Användaren skapad: " + accountuser;
     }
 
-
-    //Delete
-    @DeleteMapping(path = "{accountuserId}")
-    public void deleteAccountuser(@PathVariable("accountuserId")Long accountuserId){
-        accountuserService.deleteaccountuser(accountuserId);
+    @DeleteMapping(path = "/deleteuser/{accountuserId}")
+    public String deleteAccountUser(@PathVariable("accountuserId") Long accountuserId) {
+        return accountUserService.deleteaccountuser(accountuserId);
     }
 
-    //Put
-    @PutMapping("{accountUserId}")
+    @PutMapping("/updateuser/{accountUserId}")
     public void updateAccountUser(
             @PathVariable("accountUserId") Long accountUserId,
-            @RequestParam(required = false)String userName,
-            @RequestParam(required = false)String name,
-            @RequestParam(required = false)String passWord){
-            accountuserService.updateAccountuser(accountUserId,userName, name, passWord);
+            @RequestParam(required = false) String userName,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String passWord) {
+        accountUserService.updateAccountuser(accountUserId, userName, name, passWord);
     }
 }
 
